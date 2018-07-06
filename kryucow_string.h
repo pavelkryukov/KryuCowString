@@ -9,8 +9,7 @@
 #include <memory>
 #include <string>
 #include <exception>
-
-#include <infra/string/string_view.h>
+#include <string_view>
 
 // This class implements COW string with fixed maximum size.
 // It is very useful if you have to do A LOT of string copying
