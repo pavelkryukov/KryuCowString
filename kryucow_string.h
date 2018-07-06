@@ -26,7 +26,7 @@ private:
     // We don't want to initialize arena here, so suppress ClangTidy
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-member-init, hicpp-member-init)
     struct InternalString {
-        using SizeType = std::make_unsigned<CharT>;
+        using SizeType = std::make_unsigned_t<CharT>;
         static constexpr const size_t SIZE = 127;
         static_assert((1ull << (sizeof(SizeType) * 8)) > SIZE);
 
