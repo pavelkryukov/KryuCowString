@@ -10,6 +10,7 @@
 #include <string>
 #include <exception>
 #include <string_view>
+#include <type_traits>
 
 // This class implements COW string with fixed maximum size.
 // It is very useful if you have to do A LOT of string copying
@@ -25,10 +26,11 @@ private:
     // We don't want to initialize arena here, so suppress ClangTidy
     // NOLINTNEXTLINE(cppcoreguidelines-pro-type-member-init, hicpp-member-init)
     struct InternalString {
+        using SizeType = std::make_unsigned<CharT>;
         static constexpr const size_t SIZE = 127;
-        static_assert((1ull << (sizeof(CharT) * 8)) > SIZE);
+        static_assert((1ull << (sizeof(SizeType) * 8)) > SIZE);
 
-        CharT size = 0;
+        SizeType size = 0;
         CharT arena[SIZE];
 
         auto get_string_view() const { return View_t( arena, size); }
