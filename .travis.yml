@@ -21,6 +21,6 @@ addons:
 
 script:
   - if [ $CXX == g++ ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then CXX=g++-7; fi
-  - $CXX ./googletest/googletest/src/gtest-all.cc -c -o gtest.o -std=c++14 -isystem $TRAVIS_BUILD_DIR/googletest/googletest/include
-  - $CXX ./t/unit_test.cpp gtest.o -Wall -Wextra -Wpedantic -Werror -std=c++14 -o ./test -isystem $TRAVIS_BUILD_DIR/googletest/googletest/include
+  - $CXX ./googletest/googletest/src/gtest-all.cc -c -o gtest.o -std=c++17 -isystem $TRAVIS_BUILD_DIR/googletest/googletest/include -isystem $TRAVIS_BUILD_DIR/googletest/googletest
+  - $CXX ./t/unit_test.cpp gtest.o -Wall -Wextra -Wpedantic -Werror -std=c++17 -o ./test -isystem $TRAVIS_BUILD_DIR/googletest/googletest/include
   - ./test
