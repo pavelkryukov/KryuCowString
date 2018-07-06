@@ -1,0 +1,26 @@
+notifications:
+  email: false
+
+language: c++
+sudo: false
+
+branches:
+  only:
+  - master
+  
+compiler:
+  - gcc
+  - clang
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7
+
+script:
+  - if [ $CXX == g++ ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then CXX=g++-7; fi
+  - $CXX ./googletest/googletest/src/gtest-all.cc -c -o gtest.o -std=c++14
+  - $CXX ./t/unit_test.cpp gtest.o -Wall -Wextra -Wpedantic -Werror -std=c++14 -o ./test
+  - ./test
