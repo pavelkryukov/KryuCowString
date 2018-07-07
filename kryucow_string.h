@@ -31,8 +31,20 @@
 #include <memory>
 #include <string>
 #include <exception>
-#include <string_view>
 #include <type_traits>
+
+#ifndef __has_include
+#  error "KryuCowString requires __has_include macro"
+#endif
+
+// Support XCode without C++17
+#if __has_include("string_view")
+#  include <string_view>
+#elif __has_include("experimental/string_view")
+#  include <experimental/string_view>
+#else
+#  error "KryuCowString requires std::string_view"
+#endif
 
 // This class implements COW string with fixed maximum size.
 // It is very useful if you have to do A LOT of string copying
@@ -42,7 +54,11 @@
 template<typename CharT, typename Traits = std::char_traits<CharT>>
 class BasicKryuCowString { // ha-ha, what a pun
 private:
+#if __has_include("string_view")
     using View_t = std::basic_string_view<CharT, Traits>;
+#else
+    using View_t = std::expertimental::basic_string_view<CharT, Traits>;
+#endif
     using String_t = std::basic_string<CharT, Traits>;
 
     // We don't want to initialize arena here, so suppress ClangTidy
