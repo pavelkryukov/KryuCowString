@@ -91,3 +91,7 @@ They are:
     using reference;
     using const_reference;
 ```
+
+## Compiler bugs reported
+* ~~**[PR clang/35466](https://bugs.llvm.org/show_bug.cgi?id=35466)**~~ — Type deduction failure for explicit conversion operator with auto-deduced return type
+* ~~**[PR clang-tidy/35468](https://bugs.llvm.org/show_bug.cgi?id=35468)**~~ — Bogus warning about return type for templated assignment operator
