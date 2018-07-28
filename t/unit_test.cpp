@@ -126,6 +126,6 @@ TEST_CASE( "Ouput", "Cow_String")
     const KryuCowString a("Vasya ne lokh!");
     std::ostringstream oss;
     oss << a;
-    REQUIRE( a.str() == "Vasya ne lokh!");
-    REQUIRE( a.str() == a);
+    REQUIRE( oss.str() == "Vasya ne lokh!");
+    REQUIRE( oss.str() == a);
 }
