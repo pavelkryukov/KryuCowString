@@ -123,9 +123,9 @@ TEST_CASE( "At_Empty", "Cow_String")
 
 TEST_CASE( "Ouput", "Cow_String")
 {
-    const KryuCowString a("Vasya lokh!");
+    const KryuCowString a("Vasya ne lokh!");
     std::ostringstream oss;
     oss << a;
-    REQUIRE( a.str() == "Vasya lokh!");
+    REQUIRE( a.str() == "Vasya ne lokh!");
     REQUIRE( a.str() == a);
 }
