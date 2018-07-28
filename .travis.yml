@@ -21,5 +21,8 @@ addons:
 
 script:
   - if [ $CXX == g++ ] && [ "$TRAVIS_OS_NAME" == "linux" ]; then CXX=g++-7; fi
-  - $CXX ./t/unit_test.cpp -Wall -Wextra -Wpedantic -Werror -std=c++17 -o ./test
+  - $CXX ./t/unit_test.cpp -Wall -Wextra -Wpedantic -Werror -std=c++17 -fprofile-arcs -ftest-coverage -g -O0 -o ./test
   - ./test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
