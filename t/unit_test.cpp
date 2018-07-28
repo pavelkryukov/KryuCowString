@@ -132,9 +132,8 @@ TEST_CASE( "Output", "Cow_String")
 
 TEST_CASE( "Oveflow", "Cow_String")
 {
-    const char* long_s = "anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail";
-    const char* very_long_s = "anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail"
-                              "anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail";
+    const std::string long_s("anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail");
+    const std::string very_long_s = long_s + long_s;
     REQUIRE_THROWS_AS( BasicKryuCowString(very_long_s), std::length_error);
     REQUIRE_THROWS_AS( BasicKryuCowString() = very_long_s, std::length_error);
     REQUIRE_THROWS_AS( BasicKryuCowString() += very_long_s, std::length_error);
