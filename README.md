@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/pavelkryukov/KryuCowString.svg?branch=master)](https://travis-ci.com/pavelkryukov/KryuCowString)
+[![codecov](https://codecov.io/gh/pavelkryukov/KryuCowString/branch/master/graph/badge.svg)](https://codecov.io/gh/pavelkryukov/KryuCowString)
 
 # KryuCowString
 KryuCowString (pronounced as _krü-cow-string_) is a COW implementation of limited length string with a pun name.
