@@ -111,18 +111,6 @@ TEST_CASE( "At", "Cow_String")
     REQUIRE( a.back() == '!');
     REQUIRE( a.at(3) == 'l');
     REQUIRE( a[4] == 'o');
-    REQUIRE_THROWS_AS( a.at(15) );
-}
-
-TEST_CASE( "At", "Cow_String")
-{
-    const KryuCowString a("Hello Goodbye!");
-    REQUIRE( a.length() == std::strlen("Hello Goodbye!"));
-    REQUIRE( a[0] == 'H');
-    REQUIRE( a.front() == 'H');
-    REQUIRE( a.back() == '!');
-    REQUIRE( a.at(3) == 'l');
-    REQUIRE( a[4] == 'o');
     REQUIRE_THROWS_AS( a.at(15), std::out_of_range );
 }
 
