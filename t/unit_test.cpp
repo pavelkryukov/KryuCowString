@@ -121,11 +121,22 @@ TEST_CASE( "At_Empty", "Cow_String")
     REQUIRE_THROWS_AS( a.at(15), std::out_of_range );
 }
 
-TEST_CASE( "Ouput", "Cow_String")
+TEST_CASE( "Output", "Cow_String")
 {
     const KryuCowString a("Vasya ne lokh!");
     std::ostringstream oss;
     oss << a;
     REQUIRE( oss.str() == "Vasya ne lokh!");
     REQUIRE( oss.str() == a);
+}
+
+TEST_CASE( "Oveflow", "Cow_String")
+{
+    const char* long_s = "anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail";
+    const char* very_long_s = "anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail"
+                              "anextremelylongstringwhichhasduplicationnameinsideitselftoletteststofail";
+    REQUIRE_THROWS_AS( BasicKryuCowString(very_long_s), std::length_error);
+    REQUIRE_THROWS_AS( BasicKryuCowString() = very_long_s, std::length_error);
+    REQUIRE_THROWS_AS( BasicKryuCowString() += very_long_s, std::length_error);
+    REQUIRE_THROWS_AS( BasicKryuCowString(long_s) += long_s, std::length_error);
 }
