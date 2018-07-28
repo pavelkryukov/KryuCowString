@@ -1,11 +1,11 @@
-#include <cstring>
-
 // CATCH2
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-// uArchSim modules
 #include "../kryucow_string.h"
+
+#include <cstring>
+#include <sstream>
 
 TEST_CASE( "Equality", "Cow_String")
 {
@@ -111,5 +111,33 @@ TEST_CASE( "At", "Cow_String")
     REQUIRE( a.back() == '!');
     REQUIRE( a.at(3) == 'l');
     REQUIRE( a[4] == 'o');
+    REQUIRE_THROWS_AS( a.at(15) );
 }
 
+TEST_CASE( "At", "Cow_String")
+{
+    const KryuCowString a("Hello Goodbye!");
+    REQUIRE( a.length() == std::strlen("Hello Goodbye!"));
+    REQUIRE( a[0] == 'H');
+    REQUIRE( a.front() == 'H');
+    REQUIRE( a.back() == '!');
+    REQUIRE( a.at(3) == 'l');
+    REQUIRE( a[4] == 'o');
+    REQUIRE_THROWS_AS( a.at(15), std::out_of_range );
+}
+
+TEST_CASE( "At_Empty", "Cow_String")
+{
+    const KryuCowString a;
+    REQUIRE_THROWS_AS( a.at(0), std::out_of_range );
+    REQUIRE_THROWS_AS( a.at(15), std::out_of_range );
+}
+
+TEST_CASE( "Ouput", "Cow_String")
+{
+    const KryuCowString a("Vasya lokh!");
+    std::ostringstream oss;
+    oss << a;
+    REQUIRE( a.str() == "Vasya lokh!");
+    REQUIRE( a.str() == a);
+}
