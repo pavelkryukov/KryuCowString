@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/pavelkryukov/KryuCowString/branch/master/graph/badge.svg)](https://codecov.io/gh/pavelkryukov/KryuCowString)
 
 # KryuCowString
-KryuCowString (pronounced as _krü-cow-string_) is a COW implementation of limited length string with a pun name.
+KryuCowString (pronounced as _krü-cow-string_) is a COW wrapper of std::string.
 
 ## Features and/or limitations
 
@@ -10,8 +10,6 @@ KryuCowString (pronounced as _krü-cow-string_) is a COW implementation of limit
    * No support for multithreading programming
    * Iterators and pointers may dangle at any moment
  * Only appending and clearing is allowed.
- * Size of each string is limited by 127 characters.
- * Memory pre-allocation of 127 characters.
 
 ## Motivation
 
@@ -20,7 +18,6 @@ KryuCowString was developed for [MIPT-MIPS](https://mipt-ilab.github.io/mipt-mip
 CPU model has to work with different entities: instructions, memory transactions, branch prediction queries etc., and those entities are passed through pipelines. Each pipeline stage copies entity to the next stage, but only _some_ of the stages append some data to the string. Please note that we do not need to change the data, we need only to _append_ it.
 
 KryuCowString, as any other COW string implementation, removes overhead for copying objects introducing overheads only when data is changed. As a result, it suits fine needs of CPU model decribed above.
-
 
 ## Interfaces
 
