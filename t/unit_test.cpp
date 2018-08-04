@@ -129,3 +129,24 @@ TEST_CASE( "Output", "Cow_String")
     REQUIRE( oss.str() == "Vasya ne lokh!");
     REQUIRE( oss.str() == a);
 }
+
+TEST_CASE( "Output_Empty_String", "Cow_String")
+{
+    const KryuCowString empty_string;
+    std::ostringstream oss;
+    oss << empty_string;
+    REQUIRE( oss.str().empty());
+    REQUIRE( oss.str() == empty_string);
+}
+
+TEST_CASE( "Append_By_Empty_String", "Cow_String")
+{
+    const KryuCowString empty_string;
+    KryuCowString a( "Lopata.");
+    a += empty_string;
+    
+    REQUIRE( a == "Lopata.");
+    
+    a += "";
+    REQUIRE( a == "Lopata.");
+}
