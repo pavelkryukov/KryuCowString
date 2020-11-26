@@ -1,0 +1,19 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: gcc ./t/unit_test.cpp -Wall -Wextra -Wpedantic -Werror -std=c++17 -fprofile-arcs -ftest-coverage -g -O0 -o ./test
+    - name: Test
+      run: ./test
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.15
