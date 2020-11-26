@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: gcc ./t/unit_test.cpp -Wall -Wextra -Wpedantic -Werror -std=c++17 -fprofile-arcs -ftest-coverage -g -O0 -o ./test
+      run: g++ ./t/unit_test.cpp -Wall -Wextra -Wpedantic -Werror -std=c++17 -fprofile-arcs -ftest-coverage -g -O0 -o ./test
     - name: Test
       run: ./test
     - name: Codecov
